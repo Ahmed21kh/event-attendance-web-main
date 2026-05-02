@@ -266,7 +266,7 @@ const Customers = () => {
        
         {/* add customer */}
 
-      <AddCustomer open={addCustomerModal} onOk={handleOk} onCancel={handleCancel}/>
+      <AddCustomer getAllCustomers={()=>getAllCustomers()} open={addCustomerModal} onOk={handleOk} onCancel={handleCancel}/>
 
       {/* details invite modal  */}
 

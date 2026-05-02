@@ -19,7 +19,7 @@ import {
 } from "antd";
 import { addCustomerApi, getInvitationsApi } from "../../services/Apis";
 
-const AddCustomer = ({ open, onCancel, onOk }) => {
+const AddCustomer = ({ getAllCustomers, open, onCancel, onOk }) => {
   const [loadingData, setloadingData] = useState(false);
   const [loadingAdd, setloadingAdd] = useState(false);
   const [invitations, setinvitations] = useState([]);
@@ -88,6 +88,7 @@ const AddCustomer = ({ open, onCancel, onOk }) => {
             customer_name: "",
             customer_mobile: "",
           });
+          getAllCustomers();
           onOk();
         })
         .catch((e) => {
@@ -105,7 +106,6 @@ const AddCustomer = ({ open, onCancel, onOk }) => {
     console.log(errors);
   }, [dirtyFields, touchedFields, isLoading, errors]);
   return (
-    <>
       <Modal
         footer={null}
         closable={false}
@@ -118,9 +118,9 @@ const AddCustomer = ({ open, onCancel, onOk }) => {
           dir="rtl"
           className="  bg-white max-w-[700px] flex flex-col gap-4 p-8 rounded-lg  h-fit"
         >
-          <label className=" text-2xl ">اضافة عميل</label>
+          <label htmlFor="name" className=" text-2xl ">اضافة عميل</label>
           <div className=" w-full relative ">
-            <p htmlFor="name" className="my-3">
+            <p htmlFor="customer_name" className="my-3">
               اسم العميل
             </p>
             <Controller
@@ -142,7 +142,7 @@ const AddCustomer = ({ open, onCancel, onOk }) => {
           </div>
 
           <div className=" w-full relative  ">
-            <p htmlFor="name" className="my-3">
+            <p htmlFor="customer_mobile" className="my-3">
               رقم الهاتف
             </p>
             <Controller
@@ -205,7 +205,6 @@ const AddCustomer = ({ open, onCancel, onOk }) => {
           </div>
         </form>
       </Modal>
-    </>
   );
 };
 
